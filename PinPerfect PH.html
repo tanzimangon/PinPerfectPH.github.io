@@ -1,0 +1,282 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>PinPerfect PH</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;800&display=swap" rel="stylesheet">
+<style>
+/* Layout concept: a storefront. Scalloped awning on top, bold outlined panels, one booking form at the bottom.
+   Palette: sunny yellow ground, ink navy, awning pink, white. Type: Poppins throughout, 800 for display. */
+:root {
+  --yellow: #FFC72C;
+  --ink: #1B1340;
+  --pink: #FF4F8B;
+  --white: #FFFFFF;
+  --muted: #4A4468;
+  --font: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--yellow); color: var(--ink); font-family: var(--font); font-size: 18px; line-height: 1.55; }
+a { color: inherit; }
+h1, h2, h3, p { margin: 0; }
+h1, h2 { text-wrap: balance; }
+
+.inner { max-width: 1112px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.awning { height: 66px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='108' height='66' viewBox='0 0 108 66'%3E%3Cpath d='M0 -4H54V33a27 27 0 0 1-54 0z' fill='%23FF4F8B' stroke='%231B1340' stroke-width='4'/%3E%3Cpath d='M54 -4H108V33a27 27 0 0 1-54 0z' fill='%23FFFFFF' stroke='%231B1340' stroke-width='4'/%3E%3C/svg%3E") repeat-x left top; }
+
+.topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-block: 18px 8px; }
+.brand { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 24px; letter-spacing: -0.5px; text-decoration: none; }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; padding: 14px 28px; border-radius: 999px; border: 4px solid var(--ink); background: var(--ink); color: var(--yellow); font-family: var(--font); font-size: 18px; font-weight: 600; text-decoration: none; cursor: pointer; line-height: 1.2; }
+.btn:hover { background: var(--pink); color: var(--ink); }
+.btn--small { padding: 10px 22px; font-size: 16px; }
+.btn--white { background: var(--white); color: var(--ink); }
+.btn--white:hover { background: var(--pink); }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, summary:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+
+.hero { display: flex; flex-wrap: wrap; align-items: center; gap: 32px 48px; padding-block: 40px 72px; }
+.hero-copy { flex: 1 1 440px; min-width: 0; display: flex; flex-direction: column; gap: 24px; align-items: flex-start; }
+.hero-art { flex: 0 1 340px; min-width: 0; margin: 0 auto; }
+.hero-art svg { display: block; width: 100%; height: auto; max-width: 340px; }
+.eyebrow { font-size: 14px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; }
+.hero h1 { font-size: clamp(42px, 7vw, 76px); font-weight: 800; line-height: 1.08; letter-spacing: -2px; }
+.mark { display: inline-block; margin-top: 8px; padding: 0 16px; background: var(--white); border: 5px solid var(--ink); border-radius: 18px; box-shadow: 7px 7px 0 var(--ink); }
+.lead { font-size: 21px; max-width: 34em; }
+.hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; }
+.textlink { font-weight: 600; }
+
+.band-white { background: var(--white); border-block: 4px solid var(--ink); }
+.section { padding-block: 72px; }
+.section h2 { font-size: clamp(32px, 5vw, 46px); font-weight: 800; line-height: 1.12; letter-spacing: -1.2px; margin-bottom: 12px; }
+.section-note { max-width: 36em; margin-bottom: 36px; }
+
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 20px; }
+.card { background: var(--white); border: 4px solid var(--ink); border-radius: 22px; box-shadow: 6px 6px 0 var(--ink); padding: 24px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.card h3 { font-size: 22px; font-weight: 800; line-height: 1.25; }
+.card p { font-size: 17px; }
+
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 28px 20px; counter-reset: step; }
+.steps li { counter-increment: step; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.steps li::before { content: counter(step); width: 52px; height: 52px; border-radius: 50%; background: var(--pink); border: 4px solid var(--ink); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 22px; }
+.steps h3 { font-size: 20px; font-weight: 800; line-height: 1.25; }
+.steps p { font-size: 16px; color: var(--muted); }
+
+.chips { display: flex; flex-wrap: wrap; gap: 12px; list-style: none; margin: 0; padding: 0; }
+.chips li { padding: 8px 20px; border-radius: 999px; background: var(--white); border: 4px solid var(--ink); font-weight: 600; font-size: 18px; }
+
+.faq { display: flex; flex-direction: column; gap: 14px; max-width: 760px; }
+.faq details { background: var(--white); border: 4px solid var(--ink); border-radius: 18px; padding: 0; }
+.faq summary { cursor: pointer; padding: 16px 20px; font-weight: 600; font-size: 19px; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; font-weight: 800; font-size: 24px; line-height: 1; }
+.faq details[open] summary::after { content: "\2212"; }
+.faq details p { padding: 0 20px 18px; font-size: 17px; }
+
+.book { scroll-margin-top: 16px; }
+.contact { max-width: 820px; }
+.card .btn { align-self: flex-start; margin-top: 10px; }
+.fineprint { font-size: 15px; color: var(--muted); }
+
+.footer { background: var(--ink); color: var(--white); padding-block: 36px; }
+.footer-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; }
+.footer .brand { color: var(--white); }
+.footer p { font-size: 16px; }
+
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+</style>
+
+<div class="awning" aria-hidden="true"></div>
+
+<header class="inner topbar">
+  <a class="brand" href="#top" id="top">
+    <svg viewBox="0 0 100 100" width="44" height="44" aria-hidden="true">
+      <path d="M50 4C29 4 14 20 14 40c0 24 36 56 36 56s36-32 36-56C86 20 71 4 50 4z" fill="#FF4F8B" stroke="#1B1340" stroke-width="6" stroke-linejoin="round"></path>
+      <circle cx="50" cy="40" r="15" fill="#FFFFFF" stroke="#1B1340" stroke-width="5"></circle>
+    </svg>
+    PinPerfect PH
+  </a>
+  <a class="btn btn--small" href="#book">Book an appointment</a>
+</header>
+
+<main>
+  <section class="inner hero">
+    <div class="hero-copy">
+      <p class="eyebrow">Google Maps makeover for local shops</p>
+      <h1>Your shop,<br><span class="mark">perfectly pinned.</span></h1>
+      <p class="lead">Customers check Google Maps before they visit. We fix your listing, take real photos of your shop, and give customers an easy way to leave you a review.</p>
+      <div class="hero-actions">
+        <a class="btn" href="#book">Book an appointment</a>
+        <a class="textlink" href="#included">See what's included</a>
+      </div>
+    </div>
+    <div class="hero-art">
+      <svg viewBox="0 0 200 200" role="img" aria-label="A pink map pin with a small striped-awning shop inside, landing on a target">
+        <ellipse cx="100" cy="146" rx="78" ry="28" fill="#FFFFFF" stroke="#1B1340" stroke-width="5"></ellipse>
+        <ellipse cx="100" cy="146" rx="50" ry="18" fill="#FFC72C" stroke="#1B1340" stroke-width="5"></ellipse>
+        <ellipse cx="100" cy="146" rx="20" ry="7" fill="#1B1340"></ellipse>
+        <g transform="translate(35 16.6) scale(1.4)"><path d="M50 4C29 4 14 20 14 40c0 24 36 56 36 56s36-32 36-56C86 20 71 4 50 4z" fill="#1B1340"></path></g>
+        <g transform="translate(30 11.6) scale(1.4)">
+          <path d="M50 4C29 4 14 20 14 40c0 24 36 56 36 56s36-32 36-56C86 20 71 4 50 4z" fill="#FF4F8B" stroke="#1B1340" stroke-width="3.6" stroke-linejoin="round"></path>
+          <circle cx="50" cy="40" r="22" fill="#FFFFFF" stroke="#1B1340" stroke-width="3"></circle>
+          <rect x="39" y="33" width="22" height="17" fill="#FFFFFF" stroke="#1B1340" stroke-width="2"></rect>
+          <rect x="47" y="40" width="6" height="10" fill="#1B1340"></rect>
+          <path d="M36 28h7v5a3.5 3.5 0 0 1-7 0z" fill="#FF4F8B" stroke="#1B1340" stroke-width="1.6" stroke-linejoin="round"></path>
+          <path d="M43 28h7v5a3.5 3.5 0 0 1-7 0z" fill="#FFFFFF" stroke="#1B1340" stroke-width="1.6" stroke-linejoin="round"></path>
+          <path d="M50 28h7v5a3.5 3.5 0 0 1-7 0z" fill="#FF4F8B" stroke="#1B1340" stroke-width="1.6" stroke-linejoin="round"></path>
+          <path d="M57 28h7v5a3.5 3.5 0 0 1-7 0z" fill="#FFFFFF" stroke="#1B1340" stroke-width="1.6" stroke-linejoin="round"></path>
+        </g>
+      </svg>
+    </div>
+  </section>
+
+  <section class="band-white" id="included">
+    <div class="inner section">
+      <h2>One package, everything done</h2>
+      <p class="section-note">You get the whole Google Maps makeover in a single package. Nothing to piece together.</p>
+      <div class="cards">
+        <article class="card">
+          <h3>Listing fixes</h3>
+          <p>We correct your name, address, phone, hours, categories and website. We fix a wrong pin and report duplicate listings.</p>
+        </article>
+        <article class="card">
+          <h3>Real photos</h3>
+          <p>We visit your shop and take photos of the outside, the inside, your products and your team, then upload them to your profile.</p>
+        </article>
+        <article class="card">
+          <h3>Description and services</h3>
+          <p>A clear description, a list of your services and products, written with the words customers actually search for.</p>
+        </article>
+        <article class="card">
+          <h3>Review stand</h3>
+          <p>A small stand for your counter. Customers scan the QR code or tap their phone on it, and your Google review form opens.</p>
+        </article>
+        <article class="card">
+          <h3>Replies to your reviews</h3>
+          <p>We answer the reviews you already have, politely, so new customers see that you care.</p>
+        </article>
+        <article class="card">
+          <h3>Before and after report</h3>
+          <p>A short summary with screenshots, so you can see exactly what changed on your listing.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="inner section" id="how">
+    <h2>How it works</h2>
+    <p class="section-note">Five steps, from your first message to the finished listing.</p>
+    <ol class="steps">
+      <li>
+        <h3>Message us</h3>
+        <p>Tell us your shop name and where you are.</p>
+      </li>
+      <li>
+        <h3>We check your listing</h3>
+        <p>We list what is wrong or missing on Google Maps.</p>
+      </li>
+      <li>
+        <h3>Appointment and photos</h3>
+        <p>We visit your shop at the time you pick and take the photos.</p>
+      </li>
+      <li>
+        <h3>We update everything</h3>
+        <p>Fixes, description, photos, and your review stand.</p>
+      </li>
+      <li>
+        <h3>You get a report</h3>
+        <p>Before and after screenshots, so you see the difference.</p>
+      </li>
+    </ol>
+  </section>
+
+  <section class="band-white">
+    <div class="inner section">
+      <h2>Made for shops with a storefront</h2>
+      <p class="section-note">If customers walk in and find you on their phone first, this is for you.</p>
+      <ul class="chips">
+        <li>Cafes</li>
+        <li>Restaurants</li>
+        <li>Carinderias</li>
+        <li>Salons</li>
+        <li>Barbershops</li>
+        <li>Clinics</li>
+        <li>Auto shops</li>
+        <li>Laundromats</li>
+        <li>Bakeries</li>
+        <li>Sari-sari stores</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="inner section" id="faq">
+    <h2>Good to know</h2>
+    <div class="faq">
+      <details>
+        <summary>Do I keep control of my Google profile?</summary>
+        <p>Yes. The profile always belongs to you. We are added as a manager, and we remove our access whenever you ask.</p>
+      </details>
+      <details>
+        <summary>Can you promise more customers or a top ranking?</summary>
+        <p>No. Google decides rankings and approves edits. We make your listing complete, accurate and easy to trust.</p>
+      </details>
+      <details>
+        <summary>Do you write or buy reviews?</summary>
+        <p>Never. Reviews must come from your real customers. We only make it easy for them to leave one.</p>
+      </details>
+      <details>
+        <summary>How much does it cost?</summary>
+        <p>It is one package price, with a 50% deposit before work starts. Send us a booking request and we will give you the price.</p>
+      </details>
+    </div>
+  </section>
+
+  <section class="band-white book" id="book">
+    <div class="inner section">
+      <h2>Book an appointment</h2>
+      <p class="section-note">Message us on Messenger or WhatsApp with your shop name and area. We reply to confirm a time that works for you.</p>
+      <div class="cards contact">
+        <article class="card">
+          <h3>Messenger</h3>
+          <p>Chat with us on Facebook Messenger.</p>
+          <a class="btn" id="messenger-link" href="https://m.me/pinperfectph" target="_blank" rel="noopener">Message on Messenger</a>
+        </article>
+        <article class="card" id="wa-card" hidden>
+          <h3>WhatsApp</h3>
+          <p>Prefer WhatsApp? Your first message is already written for you.</p>
+          <a class="btn" id="wa-link" href="#" target="_blank" rel="noopener">Message on WhatsApp</a>
+        </article>
+      </div>
+      <p class="fineprint" style="margin-top: 18px;">Tell us your shop name, your area, and the days you are free.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="inner footer-row">
+    <span class="brand">
+      <svg viewBox="0 0 100 100" width="40" height="40" aria-hidden="true">
+        <path d="M50 4C29 4 14 20 14 40c0 24 36 56 36 56s36-32 36-56C86 20 71 4 50 4z" fill="#FF4F8B" stroke="#FFFFFF" stroke-width="6" stroke-linejoin="round"></path>
+        <circle cx="50" cy="40" r="15" fill="#FFFFFF"></circle>
+      </svg>
+      PinPerfect PH
+    </span>
+    <p>Google Maps makeovers for local shops in the Philippines. Mas madaling mahanap.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // Set these two values to change where the buttons go.
+  var MESSENGER_USERNAME = 'pinperfectph';
+  var WHATSAPP_NUMBER = ''; // digits only, with country code, for example 639171234567
+
+  document.getElementById('messenger-link').href = 'https://m.me/' + MESSENGER_USERNAME;
+  if (WHATSAPP_NUMBER) {
+    var text = "Hi PinPerfect PH! I'd like to book an appointment for a Google Maps makeover. My shop name is: ";
+    document.getElementById('wa-link').href = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(text);
+    document.getElementById('wa-card').hidden = false;
+  }
+})();
+</script>
+
+</body></html>
